@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lyrix
 
-## Getting Started
+**Lyrix** is an open-source, code-first visual block editor for Next.js.
 
-First, run the development server:
+Instead of configuring content through a traditional CMS, developers define blocks directly in JavaScript or TypeScript. Pages are then composed visually using those blocks, while remaining fully owned, versioned, and rendered inside your Next.js application.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Lyrix is inspired by the idea of Gutenberg, but designed specifically for modern Next.js workflows and developer-first teams.
+
+---
+
+## Why Lyrix?
+
+Most page builders and headless CMS platforms introduce:
+- Complex schemas
+- Vendor lock-in
+- Indirection between code and content
+- Difficult local development
+
+Lyrix takes a different approach.
+
+- **Blocks are code**
+- **Pages are data**
+- **Rendering is native to Next.js**
+
+No CMS UI abstractions. No proprietary pipelines.
+
+---
+
+## Core Concepts
+
+### Code-First Blocks
+Blocks are simple JavaScript or TypeScript definitions:
+
+- Written and versioned in Git
+- Typed and reusable
+- Rendered using real React components
+
+### Visual Composition
+Pages are built visually by arranging blocks, without losing control over code or structure.
+
+### Framework-Native Rendering
+Lyrix renders directly inside Next.js:
+- App Router–friendly
+- No iframe previews
+- No runtime hacks
+
+---
+
+## What Lyrix Is Not
+
+- Not a traditional CMS
+- Not a low-code website builder
+- Not a hosted platform (by default)
+
+Lyrix is a **developer tool**, first and foremost.
+
+---
+
+## Project Status
+
+🚧 **Early development**
+
+Lyrix is currently in active development. APIs and internal structures may change as the project evolves.
+
+---
+
+## Planned Features
+
+- Block registry and runtime renderer
+- Visual editor for composing pages
+- JSON-based page serialization
+- Next.js App Router support
+- Optional plugin system
+- Playground and examples
+
+---
+
+## Repository Structure (Planned)
+
+```text
+lyrix/
+ ├─ packages/
+ │   ├─ core        # block definitions, schemas, shared types
+ │   ├─ renderer    # Next.js runtime renderer
+ │   └─ editor      # visual editor (React)
+ ├─ apps/
+ │   └─ playground  # demo Next.js app
+ ├─ docs/
+ └─ examples/
+
 ```
+## Philosophy
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Lyrix is built around a simple idea:
+> Developers should own their content structure as much as they own their code.
+If you believe page building should feel like programming — not configuration — Lyrix is for you.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## License
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+MIT
 
-## Learn More
+## Contributing
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Contributions, ideas, and discussions are welcome.
+More details coming soon.
