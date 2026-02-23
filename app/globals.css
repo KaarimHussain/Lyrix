@@ -128,3 +128,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+.container-layout {
+  @apply container mx-auto px-5 sm:px-7 md:px-15 lg:px-20 xl:px-35
+}

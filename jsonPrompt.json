@@ -1,0 +1,63 @@
+[
+    {
+        "prompt_template": "Smooth 3D abstract [form]. Soft, glowing lighting with subsurface scattering. Minimalist modern aesthetic, clean curves. Colors: [color_palette].",
+        "customizable_elements": {
+            "form": "rolling dunes, fluid waves, or soft geometric hills",
+            "color_palette": "Primary hex #258651, smoothly blended with radiant light greens and deep, rich dark green tones for high contrast and depth"
+        },
+        "size": {
+            "height": 1000,
+            "width": 1000,
+            "aspect_ratio": "square"
+        },
+        "style_tags": [
+            "3D render",
+            "desktop wallpaper",
+            "minimalist",
+            "vibrant color gradients",
+            "radiant ambient glow",
+            "deep subsurface scattering",
+            "edge-to-edge composition",
+            "high contrast"
+        ],
+        "quality_modifiers": "8k resolution, flawless render, high fidelity, ultra-clean composition, cinematic lighting",
+        "variant_options": [
+            {
+                "variant_name": "Oceanic Flow",
+                "overrides": {
+                    "form": "fluid waves",
+                    "color_palette": "Deep navy #0a192f to bright cyan #64ffda, with luminous highlights"
+                }
+            },
+            {
+                "variant_name": "Warm Sunset",
+                "overrides": {
+                    "form": "rolling dunes",
+                    "color_palette": "Warm coral #ff7e5f to soft peach #ffecd2, with a golden glow"
+                }
+            },
+            {
+                "variant_name": "Dark Mode Graphite",
+                "overrides": {
+                    "form": "soft geometric hills",
+                    "color_palette": "Matte black #1a1a1a to soft grey #b3b3b3, with striking rim lighting"
+                }
+            }
+        ]
+    },
+    {
+        "prompt_template": "Smooth 3D abstract [form]. Soft, glowing lighting with subsurface scattering. Minimalist modern aesthetic, clean curves. Colors: [color_palette].",
+        "customizable_elements": {
+            "form": "rolling dunes, fluid waves, or soft geometric hills",
+            "color_palette": "amber and crimson, cool neon blues, or soft pastel pinks"
+        },
+        "style_tags": [
+            "3D render",
+            "minimalist",
+            "smooth gradient",
+            "soft ambient glow",
+            "app icon style"
+        ],
+        "quality_modifiers": "8k, clean composition, high fidelity"
+    }
+]
