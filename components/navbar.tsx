@@ -1,170 +1,611 @@
-"use client"
+"use client";
 
 import Logo from "./logo";
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "./ui/navigation-menu";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "./ui/navigation-menu";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import React, { useMemo } from "react";
 import { cn } from "@/lib/utils";
-import { BookOpen, Box, Code2, FileText, Github, Layout, Map, Megaphone, Menu, Server, Terminal, Users, X } from "lucide-react";
-
-const NAV_MENU = [
-    {
-        label: "Features",
-        items: [
-            { href: "/products/core", title: "Lyrix Core", icon: <Box className="h-5 w-5" />, description: "The foundational engine for your content architecture." },
-            { href: "/products/visual-editor", title: "Visual Editor", icon: <Layout className="h-5 w-5" />, description: "Drag, drop, and design with real-time previews." },
-            { href: "/products/renderer", title: "Renderer", icon: <Server className="h-5 w-5" />, description: "High-performance global edge delivery network." },
-            { href: "/products/core", title: "Lyrix Core", icon: <Box className="h-5 w-5" />, description: "The foundational engine for your content architecture." },
-            { href: "/products/visual-editor", title: "Visual Editor", icon: <Layout className="h-5 w-5" />, description: "Drag, drop, and design with real-time previews." },
-            { href: "/products/renderer", title: "Renderer", icon: <Server className="h-5 w-5" />, description: "High-performance global edge delivery network." }
-        ],
-        gridClass: "w-[400px] md:w-[500px] md:grid-cols-2 lg:w-[600px]",
-    },
-    {
-        label: "Use Cases",
-        items: [
-            { href: "/use-cases/marketing", title: "Marketing Pages", icon: <Megaphone className="h-5 w-5" />, description: "Launch campaigns faster with pre-built blocks." },
-            { href: "/use-cases/docs", title: "Docs Sites", icon: <FileText className="h-5 w-5" />, description: "Beautiful, versioned documentation out of the box." },
-            { href: "/use-cases/internal-tools", title: "Internal Tools", icon: <Server className="h-5 w-5" />, description: "Secure portals and dashboards for your team." },
-        ],
-        gridClass: "w-[400px]",
-    },
-    {
-        label: "Developers",
-        items: [
-            { href: "/docs", title: "Documentation", icon: <BookOpen className="h-5 w-5" />, description: "Guides, tutorials, and integration steps." },
-            { href: "/docs/api", title: "API Reference", icon: <Terminal className="h-5 w-5" />, description: "Detailed endpoint specifications and SDKs." },
-            { href: "/examples", title: "Examples", icon: <Code2 className="h-5 w-5" />, description: "Cloneable starter kits for Next.js, Remix, and Nuxt.", className: "md:col-span-2" },
-        ],
-        gridClass: "w-[400px] md:grid-cols-2",
-    },
-    {
-        label: "Open Source",
-        items: [
-            { href: "/github", title: "GitHub", icon: <Github className="h-5 w-5" />, description: "View our source code and star the repo." },
-            { href: "/roadmap", title: "Roadmap", icon: <Map className="h-5 w-5" />, description: "See what we are building next." },
-            { href: "/contributing", title: "Contributing", icon: <Users className="h-5 w-5" />, description: "Guidelines for submitting PRs and issues." },
-        ],
-        gridClass: "w-[300px]",
-    },
-];
+import {
+  BookOpen,
+  Box,
+  Code2,
+  FileText,
+  Github,
+  Layout,
+  Megaphone,
+  Server,
+  Terminal,
+  Users,
+  X,
+  Menu,
+} from "lucide-react";
+import Image from "next/image";
 
 export default function Navbar() {
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
-    const DesktopNav = useMemo(() => (
-        <NavigationMenu>
-            <NavigationMenuList className="gap-2">
-                {NAV_MENU.map((section) => (
-                    <NavigationMenuItem key={section.label}>
-                        <NavigationMenuTrigger className="bg-transparent hover:bg-stone-100 data-[state=open]:bg-stone-100">
-                            {section.label}
-                        </NavigationMenuTrigger>
-                        <NavigationMenuContent>
-                            <ul className={cn("grid gap-3 bg-[#FCFCFA]", section.gridClass)}>
-                                {section.items.map((item, index) => (
-                                    <ListItem key={index} href={item.href} title={item.title} icon={item.icon} className={item.className}>
-                                        {item.description}
-                                    </ListItem>
-                                ))}
-                            </ul>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                ))}
-            </NavigationMenuList>
-        </NavigationMenu>
-    ), []);
+  const DesktopNav = useMemo(
+    () => (
+      <NavigationMenu>
+        <NavigationMenuList className="gap-1">
+          {/* === FEATURES MENU === */}
+          <NavigationMenuItem>
+            <NavigationMenuTrigger className="bg-transparent hover:bg-accent data-[state=open]:bg-accent hover:text-accent-foreground data-[state=open]:text-accent-foreground h-9 px-3 py-2 text-sm font-medium">
+              Features
+            </NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <div className="w-[80vw] max-w-[850px] flex flex-col md:flex-row p-0 bg-background text-foreground rounded-lg overflow-hidden">
+                {/* Left Side: 6 Products */}
+                <div className="flex-1 p-5 md:p-6 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
+                  <div className="col-span-1 sm:col-span-2 mb-2 text-[11px] font-bold text-muted-foreground uppercase tracking-widest px-2">
+                    Shop all products
+                  </div>
 
-    return (
-        <header className="sticky top-0 z-50 w-full border-b border-stone-200 bg-transparent backdrop-blur-md">
-            <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
-                <div className="flex items-center">
-                    <Logo height={70} width={70} text="Lyrix" textClassName="text-3xl font-bold" />
-                </div>
-
-                {/* Desktop Navigation */}
-                <div className="hidden md:block">
-                    {DesktopNav}
-                </div>
-
-                {/* CTA & Mobile Toggle */}
-                <div className="flex items-center gap-4">
-                    <Button variant="outline">Login</Button>
-                    <Button>Register</Button>
-                    <button
-                        className="md:hidden p-2 text-stone-600"
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        aria-label="Toggle menu"
-                    >
-                        {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-                    </button>
-                </div>
-            </div>
-
-            {/* Mobile Full-Screen Menu Overlay */}
-            <div
-                className={cn(
-                    "fixed inset-0 top-16 z-40 grid h-[calc(100vh-4rem)] grid-flow-row auto-rows-max overflow-auto p-6 pb-32 shadow-md animate-in slide-in-from-bottom-8 md:hidden bg-[#FCFCFA]",
-                    isMobileMenuOpen ? "block" : "hidden"
-                )}
-            >
-                <div className="relative z-20 grid gap-6 rounded-md p-4 text-popover-foreground">
-                    {NAV_MENU.map((section) => (
-                        <div key={section.label} className="grid gap-4">
-                            <h4 className="font-medium leading-none text-stone-900">{section.label}</h4>
-                            <div className="grid gap-2 pl-4 border-l border-stone-200">
-                                {section.items.map((item, index) => (
-                                    <MobileLink key={index} href={item.href}>{item.title}</MobileLink>
-                                ))}
-                            </div>
-                        </div>
-                    ))}
-
-                    <div className="mt-4 flex flex-col gap-3 border-t border-stone-200 pt-6">
-                        <Link href="/pricing" className="text-sm font-medium text-stone-600">Pricing</Link>
-                        <Link href="/signup" className="inline-flex w-full h-10 items-center justify-center rounded-md bg-stone-900 px-4 py-2 text-sm font-medium text-[#FCFCFA]">
-                            Get Started
-                        </Link>
+                  {/* Product 1 */}
+                  <Link
+                    href="/products/lyrix-ai"
+                    className="flex items-center gap-3 px-2 py-1 rounded-lg hover:bg-muted group transition-all"
+                  >
+                    <div className="aspect-square w-15 relative rounded-lg border border-border/50 overflow-hidden bg-muted shadow-sm">
+                      <Image
+                        src="/images/navbar/Lyrix-AI.png"
+                        alt="Lyrix AI"
+                        fill
+                        className="object-cover"
+                      />
                     </div>
+                    <div className="flex flex-col">
+                      <div className="text-xl font-semibold text-foreground leading-tight mb-0.5 group-hover:text-primary transition-colors">
+                        Lyrix AI
+                      </div>
+                      <div className="text-xs text-muted-foreground line-clamp-1">
+                        Intelligent content generation.
+                      </div>
+                    </div>
+                  </Link>
+
+                  {/* Product 2 */}
+                  <Link
+                    href="/products/visual-editor"
+                    className="flex items-center gap-3 px-2 py-1 rounded-lg hover:bg-muted group transition-all"
+                  >
+                    <div className="aspect-square w-15 relative rounded-lg border border-border/50 overflow-hidden bg-muted shadow-sm">
+                      <Image
+                        src="/images/navbar/Visual-Editor.png"
+                        alt="Visual Editor"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <div className="text-xl font-semibold text-foreground leading-tight mb-0.5 group-hover:text-primary transition-colors">
+                        Visual Editor
+                      </div>
+                      <div className="text-xs text-muted-foreground line-clamp-1">
+                        Drag & drop interface.
+                      </div>
+                    </div>
+                  </Link>
+
+                  {/* Product 3 */}
+                  <Link
+                    href="/products/renderer"
+                    className="flex items-center gap-3 px-2 py-1 rounded-lg hover:bg-muted group transition-all"
+                  >
+                    <div className="aspect-square w-15 relative rounded-lg border border-border/50 overflow-hidden bg-muted shadow-sm">
+                      <Image
+                        src="/images/navbar/Renderer.png"
+                        alt="Renderer"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <div className="text-xl font-semibold text-foreground leading-tight mb-0.5 group-hover:text-primary transition-colors">
+                        Renderer
+                      </div>
+                      <div className="text-xs text-muted-foreground line-clamp-1">
+                        High-performance delivery.
+                      </div>
+                    </div>
+                  </Link>
+
+                  {/* Product 4 */}
+                  <Link
+                    href="/products/plugin-engine"
+                    className="flex items-center gap-3 px-2 py-1 rounded-lg hover:bg-muted group transition-all"
+                  >
+                    <div className="aspect-square w-15 relative rounded-lg border border-border/50 overflow-hidden bg-muted shadow-sm">
+                      <Image
+                        src="/images/navbar/Plugin-Engine.png"
+                        alt="Plugin Engine"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <div className="text-xl font-semibold text-foreground leading-tight mb-0.5 group-hover:text-primary transition-colors">
+                        Plugin Engine
+                      </div>
+                      <div className="text-xs text-muted-foreground line-clamp-1">
+                        Extend anytime anywhere.
+                      </div>
+                    </div>
+                  </Link>
+
+                  {/* Product 5 */}
+                  <Link
+                    href="/products/team-sync"
+                    className="flex items-center gap-3 px-2 py-1 rounded-lg hover:bg-muted group transition-all"
+                  >
+                    <div className="aspect-square w-15 relative rounded-lg border border-border/50 overflow-hidden bg-muted shadow-sm">
+                      <Image
+                        src="/images/navbar/Team-Sync.png"
+                        alt="Team Sync"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <div className="text-xl font-semibold text-foreground leading-tight mb-0.5 group-hover:text-primary transition-colors">
+                        Team Sync
+                      </div>
+                      <div className="text-xs text-muted-foreground line-clamp-1">
+                        Collaborate in real time.
+                      </div>
+                    </div>
+                  </Link>
+
+                  {/* Product 6 */}
+                  <Link
+                    href="/products/ai-feature"
+                    className="flex items-center gap-3 px-2 py-1 rounded-lg hover:bg-muted group transition-all"
+                  >
+                    <div className="aspect-square w-15 relative rounded-lg border border-border/50 overflow-hidden bg-muted shadow-sm">
+                      <Image
+                        src="/images/navbar/AI-Feature.png"
+                        alt="AI Feature"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <div className="text-xl font-semibold text-foreground leading-tight mb-0.5 group-hover:text-primary transition-colors">
+                        AI Automation
+                      </div>
+                      <div className="text-xs text-muted-foreground line-clamp-1">
+                        Next-gen workflows.
+                      </div>
+                    </div>
+                  </Link>
                 </div>
+
+                {/* Right Side: Theme matched Cards */}
+                <div className="w-full md:w-[280px] bg-muted/20 p-5 md:p-6 flex flex-col gap-3 border-l border-border shrink-0">
+                  {/* Light card */}
+                  <div className="bg-card rounded-xl p-4 border border-border shadow-sm">
+                    <h3 className="text-sm font-semibold text-foreground mb-1 leading-tight">
+                      Enterprise needs
+                    </h3>
+                    <p className="text-xs text-muted-foreground mb-3">
+                      Customise your workspace securely.
+                    </p>
+                    <Link
+                      href="/enterprise"
+                      className="text-[11px] font-medium text-foreground hover:text-foreground/80 pb-0.5 inline-block"
+                    >
+                      Explore Enterprise
+                    </Link>
+                  </div>
+                  {/* Primary theme card */}
+                  <div className="bg-primary/95 rounded-xl p-4 text-primary-foreground shadow-sm flex flex-col justify-between border border-primary-foreground/20">
+                    <div>
+                      <h3 className="text-sm font-semibold mb-1">
+                        Loyalty Programme
+                      </h3>
+                      <p className="text-[11px] text-primary-foreground/90">Earn 5% back</p>
+                    </div>
+                    <Link
+                      href="/rewards"
+                      className="text-[11px] font-medium text-primary-foreground hover:text-primary-foreground/80 mt-3 inline-block"
+                    >
+                      Discover Now →
+                    </Link>
+                  </div>
+                  {/* Secondary theme card */}
+                  <div className="bg-secondary rounded-xl p-4 text-secondary-foreground shadow-sm flex-1 flex flex-col justify-between border border-border">
+                    <div>
+                      <h3 className="text-sm font-semibold mb-1">
+                        Promotions return soon
+                      </h3>
+                      <p className="text-[11px] text-secondary-foreground/80 leading-relaxed">
+                        Fair, transparent pricing always.
+                      </p>
+                    </div>
+                    <Link
+                      href="/products"
+                      className="text-[11px] font-medium text-secondary-foreground hover:text-secondary-foreground/80 mt-3 inline-block"
+                    >
+                      Shop products →
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+
+          {/* === USE CASES MENU === */}
+          <NavigationMenuItem>
+            <NavigationMenuTrigger className="bg-transparent hover:bg-accent data-[state=open]:bg-accent hover:text-accent-foreground data-[state=open]:text-accent-foreground h-9 px-3 py-2 text-sm font-medium">
+              Use Cases
+            </NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <div className="w-[80vw] max-w-[700px] p-5 md:p-6 bg-background rounded-lg">
+                <div className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest mb-4 px-1">
+                  Explore
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {/* Card 1 */}
+                  <Link
+                    href="/use-cases/marketing"
+                    className="block p-4 bg-muted/40 rounded-xl hover:bg-muted transition-colors border border-transparent hover:border-border"
+                  >
+                    <div className="flex items-center gap-3 mb-1.5">
+                      <div className="w-8 h-8 rounded-lg bg-background flex items-center justify-center shadow-sm border border-border shrink-0">
+                        <Megaphone className="w-4 h-4 text-foreground" />
+                      </div>
+                      <h3 className="text-sm font-semibold text-foreground">
+                        Marketing Pages
+                      </h3>
+                    </div>
+                    <p className="text-xs text-muted-foreground pl-11">
+                      Launch campaigns faster with pre-built UI blocks.
+                    </p>
+                  </Link>
+
+                  {/* Card 2 */}
+                  <Link
+                    href="/use-cases/docs"
+                    className="block p-4 bg-muted/40 rounded-xl hover:bg-muted transition-colors border border-transparent hover:border-border"
+                  >
+                    <div className="flex items-center gap-3 mb-1.5">
+                      <div className="w-8 h-8 rounded-lg bg-background flex items-center justify-center shadow-sm border border-border shrink-0">
+                        <FileText className="w-4 h-4 text-foreground" />
+                      </div>
+                      <h3 className="text-sm font-semibold text-foreground">
+                        Docs Sites
+                      </h3>
+                    </div>
+                    <p className="text-xs text-muted-foreground pl-11">
+                      Beautiful, versioned platform documentation.
+                    </p>
+                  </Link>
+
+                  {/* Card 3 */}
+                  <Link
+                    href="/use-cases/internal"
+                    className="block p-4 bg-muted/40 rounded-xl hover:bg-muted transition-colors border border-transparent hover:border-border"
+                  >
+                    <div className="flex items-center gap-3 mb-1.5">
+                      <div className="w-8 h-8 rounded-lg bg-background flex items-center justify-center shadow-sm border border-border shrink-0">
+                        <Server className="w-4 h-4 text-foreground" />
+                      </div>
+                      <h3 className="text-sm font-semibold text-foreground">
+                        Internal Tools
+                      </h3>
+                    </div>
+                    <p className="text-xs text-muted-foreground pl-11">
+                      Secure portals and dashboards for your team.
+                    </p>
+                  </Link>
+
+                  {/* Card 4 */}
+                  <Link
+                    href="/use-cases/ecommerce"
+                    className="block p-4 bg-muted/40 rounded-xl hover:bg-muted transition-colors border border-transparent hover:border-border"
+                  >
+                    <div className="flex items-center gap-3 mb-1.5">
+                      <div className="w-8 h-8 rounded-lg bg-background flex items-center justify-center shadow-sm border border-border shrink-0">
+                        <Box className="w-4 h-4 text-foreground" />
+                      </div>
+                      <h3 className="text-sm font-semibold text-foreground">
+                        E-commerce
+                      </h3>
+                    </div>
+                    <p className="text-xs text-muted-foreground pl-11">
+                      High-conversion storefronts and carts.
+                    </p>
+                  </Link>
+
+                  {/* Card 5 */}
+                  <Link
+                    href="/use-cases/portfolio"
+                    className="block p-4 bg-muted/40 rounded-xl hover:bg-muted transition-colors border border-transparent hover:border-border"
+                  >
+                    <div className="flex items-center gap-3 mb-1.5">
+                      <div className="w-8 h-8 rounded-lg bg-background flex items-center justify-center shadow-sm border border-border shrink-0">
+                        <Layout className="w-4 h-4 text-foreground" />
+                      </div>
+                      <h3 className="text-sm font-semibold text-foreground">
+                        Portfolios
+                      </h3>
+                    </div>
+                    <p className="text-xs text-muted-foreground pl-11">
+                      Showcase your work with stunning animations.
+                    </p>
+                  </Link>
+
+                  {/* Card 6 */}
+                  <Link
+                    href="/use-cases/agencies"
+                    className="block p-4 bg-muted/40 rounded-xl hover:bg-muted transition-colors border border-transparent hover:border-border"
+                  >
+                    <div className="flex items-center gap-3 mb-1.5">
+                      <div className="w-8 h-8 rounded-lg bg-background flex items-center justify-center shadow-sm border border-border shrink-0">
+                        <Users className="w-4 h-4 text-foreground" />
+                      </div>
+                      <h3 className="text-sm font-semibold text-foreground">
+                        Agencies
+                      </h3>
+                    </div>
+                    <p className="text-xs text-muted-foreground pl-11">
+                      Scale client work with reusable systems.
+                    </p>
+                  </Link>
+                </div>
+              </div>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+
+          {/* === DEVELOPERS MENU === */}
+          <NavigationMenuItem>
+            <NavigationMenuTrigger className="bg-transparent hover:bg-accent data-[state=open]:bg-accent hover:text-accent-foreground data-[state=open]:text-accent-foreground h-9 px-3 py-2 text-sm font-medium">
+              Developers
+            </NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <div className="w-[80vw] max-w-[750px] p-0 bg-card text-card-foreground flex flex-col md:flex-row shadow-lg border-border rounded-lg overflow-hidden">
+                {/* Left Side List */}
+                <div className="flex-1 p-5 md:p-6 pb-4 md:pb-6">
+                  <div className="text-[11px] font-bold text-muted-foreground mb-3 px-1 uppercase tracking-wider">
+                    Build with Lyrix
+                  </div>
+                  <div className="grid grid-cols-1 gap-1">
+                    <Link
+                      href="/docs"
+                      className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted transition-colors border border-transparent hover:border-border"
+                    >
+                      <div className="w-9 h-9 rounded-md relative overflow-hidden shrink-0 bg-primary/10 flex items-center justify-center opacity-90 border border-primary/20">
+                        <BookOpen className="w-4 h-4 text-primary" />
+                      </div>
+                      <div className="flex flex-col">
+                        <div className="text-[13px] font-semibold text-foreground mb-0.5 leading-none">
+                          Documentation
+                        </div>
+                        <div className="text-[11px] text-muted-foreground leading-none">
+                          Complete guides and tutorials.
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/api"
+                      className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted transition-colors border border-transparent hover:border-border"
+                    >
+                      <div className="w-9 h-9 rounded-md relative overflow-hidden shrink-0 bg-primary/10 flex items-center justify-center opacity-90 border border-primary/20">
+                        <Terminal className="w-4 h-4 text-primary" />
+                      </div>
+                      <div className="flex flex-col">
+                        <div className="text-[13px] font-semibold text-foreground mb-0.5 leading-none">
+                          API Reference
+                        </div>
+                        <div className="text-[11px] text-muted-foreground leading-none">
+                          Endpoints, SDKs, and types.
+                        </div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/automations"
+                      className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted transition-colors border border-transparent hover:border-border"
+                    >
+                      <div className="w-9 h-9 rounded-md relative overflow-hidden shrink-0 bg-primary/10 flex items-center justify-center opacity-90 border border-primary/20">
+                        <Code2 className="w-4 h-4 text-primary" />
+                      </div>
+                      <div className="flex flex-col">
+                        <div className="text-[13px] font-semibold text-foreground mb-0.5 leading-none">
+                          Complex Automations
+                        </div>
+                        <div className="text-[11px] text-muted-foreground leading-none">
+                          Build logic with AI assist.
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Right Side Card */}
+                <div className="w-full md:w-[300px] bg-muted/20 p-5 md:p-6 flex flex-col shrink-0 border-t md:border-t-0 md:border-l border-border">
+                  <div className="text-[11px] font-bold text-muted-foreground mb-3 px-1 uppercase tracking-wider">
+                    Start Building
+                  </div>
+                  <div className="flex-1 rounded-xl bg-primary text-primary-foreground p-5 flex flex-col justify-end relative overflow-hidden shadow-sm group cursor-pointer border border-primary-foreground/20 min-h-[160px]">
+                    <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent z-10"></div>
+                    {/* Glowing highlight blob */}
+                    <div className="absolute top-[-20%] right-[-10%] w-40 h-40 bg-primary-foreground/20 blur-3xl rounded-full transition-transform duration-700 group-hover:scale-110"></div>
+                    <div className="relative z-20">
+                      <div className="inline-flex px-2 py-0.5 bg-primary-foreground/20 backdrop-blur-md rounded-md text-[9px] font-medium text-primary-foreground mb-2 border border-primary-foreground/20">
+                        Released 3 min ago
+                      </div>
+                      <h3 className="text-xl font-bold text-primary-foreground mb-1.5 leading-tight">
+                        Send Emails <br />with AI
+                      </h3>
+                      <p className="text-[10px] text-primary-foreground/90 mb-4 leading-normal">
+                        Send emails directly through Lyrix or your existing ESP via natural prompts.
+                      </p>
+                      <Button size="sm" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 border-0 rounded-md px-4 h-7 font-bold shadow-sm shadow-black/10 text-[11px] w-fit">
+                        Explore
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+
+          {/* === NORMAL LINKS === */}
+          <NavigationMenuItem>
+            <Link href="/docs" passHref>
+              <NavigationMenuLink className="bg-transparent hover:bg-accent group inline-flex h-9 w-max items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors text-muted-foreground hover:text-foreground">
+                Docs
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+
+          <NavigationMenuItem>
+            <Link href="/pricing" passHref>
+              <NavigationMenuLink className="bg-transparent hover:bg-accent group inline-flex h-9 w-max items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors text-muted-foreground hover:text-foreground">
+                Pricing
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+    ),
+    []
+  );
+
+  return (
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
+        <div className="flex items-center">
+          <Logo
+            height={60}
+            width={60}
+            text="Lyrix"
+            textClassName="text-2xl font-bold"
+          />
+        </div>
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          {DesktopNav}
+        </div>
+
+        {/* CTA & Mobile Toggle */}
+        <div className="flex items-center gap-3">
+          <Button variant="outline" size="sm" className="hidden sm:inline-flex h-8">Login</Button>
+          <Button size="sm" className="hidden sm:inline-flex h-8">Register</Button>
+          <button
+            className="md:hidden p-2 text-muted-foreground hover:text-foreground"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Full-Screen Menu Overlay */}
+      <div
+        className={cn(
+          "fixed inset-0 top-16 z-40 grid h-[calc(100vh-4rem)] grid-flow-row auto-rows-max overflow-auto p-6 pb-32 shadow-md animate-in slide-in-from-bottom-8 md:hidden bg-background",
+          isMobileMenuOpen ? "block" : "hidden",
+        )}
+      >
+        <div className="relative z-20 grid gap-6 rounded-md p-4 text-foreground">
+          <div className="grid gap-4">
+            <h4 className="font-medium leading-none text-foreground">
+              Features
+            </h4>
+            <div className="grid gap-2 pl-4 border-l border-border">
+              <MobileLink href="/products/lyrix-ai">Lyrix AI</MobileLink>
+              <MobileLink href="/products/visual-editor">Visual Editor</MobileLink>
+              <MobileLink href="/products/renderer">Renderer</MobileLink>
+              <MobileLink href="/products/plugin-engine">Plugin Engine</MobileLink>
+              <MobileLink href="/products/team-sync">Team Sync</MobileLink>
+              <MobileLink href="/products/ai-feature">AI Automation</MobileLink>
             </div>
-        </header>
-    );
+          </div>
+
+          <div className="grid gap-4">
+            <h4 className="font-medium leading-none text-foreground">
+              Use Cases
+            </h4>
+            <div className="grid gap-2 pl-4 border-l border-border">
+              <MobileLink href="/use-cases/marketing">Marketing Pages</MobileLink>
+              <MobileLink href="/use-cases/docs">Docs Sites</MobileLink>
+              <MobileLink href="/use-cases/internal">Internal Tools</MobileLink>
+              <MobileLink href="/use-cases/ecommerce">E-commerce</MobileLink>
+            </div>
+          </div>
+
+          <div className="grid gap-4">
+            <h4 className="font-medium leading-none text-foreground">
+              Developers
+            </h4>
+            <div className="grid gap-2 pl-4 border-l border-border">
+              <MobileLink href="/docs">Documentation</MobileLink>
+              <MobileLink href="/api">API Reference</MobileLink>
+              <MobileLink href="/automations">Automations</MobileLink>
+            </div>
+          </div>
+
+          <div className="mt-4 flex flex-col gap-3 border-t border-border pt-6">
+            <Link
+              href="/docs"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground"
+            >
+              Docs
+            </Link>
+            <Link
+              href="/pricing"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground"
+            >
+              Pricing
+            </Link>
+            <Link
+              href="/login"
+              className="inline-flex w-full h-10 items-center justify-center rounded-md border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-accent"
+            >
+              Login
+            </Link>
+            <Link
+              href="/signup"
+              className="inline-flex w-full h-10 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+            >
+              Get Started
+            </Link>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
 }
 
-const ListItem = React.forwardRef<
-    React.ElementRef<"a">,
-    React.ComponentPropsWithoutRef<"a"> & { title: string; icon?: React.ReactNode; className?: string; children?: React.ReactNode }
->(({ className, title, children, icon, ...props }, ref) => {
-    return (
-        <li>
-            <NavigationMenuLink asChild>
-                <a
-                    ref={ref}
-                    className={cn(
-                        "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-stone-100 hover:text-stone-900 focus:bg-stone-100 focus:text-stone-900",
-                        className
-                    )}
-                    {...props}
-                >
-                    <div className="flex items-center gap-3">
-                        {icon && <div className="text-stone-500">{icon}</div>}
-                        <div className="text-sm font-medium leading-none text-stone-900">{title}</div>
-                    </div>
-                    <p className="line-clamp-2 text-sm leading-snug text-stone-500 mt-1 pl-8">
-                        {children}
-                    </p>
-                </a>
-            </NavigationMenuLink>
-        </li>
-    )
-})
-ListItem.displayName = "ListItem"
-
 // Helper for mobile menu links
-const MobileLink = ({ href, children }: { href: string, children: React.ReactNode }) => (
-    <Link href={href} className="text-sm text-stone-600 hover:text-stone-900 py-1">
-        {children}
-    </Link>
-)
+const MobileLink = ({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) => (
+  <Link
+    href={href}
+    className="text-sm text-muted-foreground hover:text-foreground py-1 transition-colors"
+  >
+    {children}
+  </Link>
+);

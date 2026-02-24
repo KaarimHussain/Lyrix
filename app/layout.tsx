@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import { Inter_Tight } from "next/font/google";
 import "./globals.css";
@@ -11,6 +12,9 @@ export const metadata: Metadata = {
   title: "Lyrix - code-first visual block editor",
   description:
     "Lyrix is an open-source, code-first visual block editor for Next.js",
+  icons: {
+    icon: "/images/Logo.png",
+  },
 };
 
 export default function RootLayout({
@@ -20,9 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} antialiased`}
-      >
+      <body className={`${inter.className} antialiased`}>
         <Navbar />
         {children}
       </body>
