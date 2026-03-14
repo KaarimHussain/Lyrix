@@ -81,32 +81,32 @@ export default function RegisterPage() {
 
                         {/* Email/Password Form */}
                         <form className="grid gap-4">
-                        <LyrixInput
-                            id="name"
-                            type="text"
-                            label="Full Name"
-                            placeholder="Jared Palmer"
-                            required
-                        />
-
-                        <LyrixInput
-                            id="email"
-                            type="email"
-                            label="Email"
-                            placeholder="developer@lyrix.dev"
-                            required
-                        />
-
-                            <div className="grid gap-2">
                             <LyrixInput
-                                id="password"
-                                variant="password"
-                                label="Password"
-                                placeholder="••••••••"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                id="name"
+                                type="text"
+                                label="Full Name"
+                                placeholder="Jared Palmer"
                                 required
                             />
+
+                            <LyrixInput
+                                id="email"
+                                type="email"
+                                label="Email"
+                                placeholder="developer@lyrix.dev"
+                                required
+                            />
+
+                            <div className="grid gap-2">
+                                <LyrixInput
+                                    id="password"
+                                    variant="password"
+                                    label="Password"
+                                    placeholder="••••••••"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
 
                                 {/* CSS-based Password Strength Indicator */}
                                 <div className={`transition-all duration-300 overflow-hidden ${password.length > 0 ? 'h-[28px] opacity-100 mt-1' : 'h-0 opacity-0'}`}>
@@ -127,7 +127,7 @@ export default function RegisterPage() {
 
                             <Button
                                 type="submit"
-                                className="w-full h-11 mt-2 bg-primary text-primary-foreground hover:bg-primary/90 transition-all font-medium shadow-md shadow-primary/20"
+                                className="w-full h-11 mt-2 bg-primary text-primary-foreground hover:bg-primary/90 transition-all font-medium"
                             >
                                 Create Account &rarr;
                             </Button>

@@ -159,7 +159,7 @@ export default function LoginPage() {
 
                             <Button
                                 type="submit"
-                                className="w-full h-11 mt-2 bg-primary text-primary-foreground hover:bg-primary/90 transition-all font-medium shadow-md shadow-primary/20"
+                                className="w-full h-11 mt-2 bg-primary text-primary-foreground hover:bg-primary/90 transition-all font-medium"
                             >
                                 Sign In &rarr;
                             </Button>
