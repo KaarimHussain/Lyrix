@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import { Inter_Tight, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar";
+
 
 const interTight = Inter_Tight({
   variable: "--font-inter-tight",
@@ -123,7 +123,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Navbar />
+
         {children}
       </body>
     </html>

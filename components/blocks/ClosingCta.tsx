@@ -40,13 +40,15 @@ export function ClosingCta() {
                     className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-20"
                 >
                     <Link href="https://github.com/KaarimHussain/Lyrix">
-                        <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-sans px-8 h-12 text-base border-none outline-none">
+                        <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-sans px-8 h-12 text-base border-none outline-none w-full">
                             View on GitHub ↗
                         </Button>
                     </Link>
-                    <Button size="lg" variant="outline" disabled className="font-sans px-8 h-12 text-base border-white/10 hover:bg-white/5 bg-white/5 text-white/40 disabled:opacity-70">
-                        Read the Docs
-                    </Button>
+                    <Link href="/docs">
+                        <Button size="lg" variant="outline" className="font-sans px-8 h-12 text-base border-white/10 hover:bg-white/5 bg-white/5 text-white/40 disabled:opacity-70 w-full hover:text-white">
+                            Read the Docs
+                        </Button>
+                    </Link>
                 </motion.div>
 
                 <motion.div

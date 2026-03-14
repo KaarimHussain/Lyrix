@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export function Hero() {
     return (
-        <section className="relative min-h-screen flex items-center bg-dot-grid overflow-hidden pt-20 pb-16">
+        <section className="relative min-h-screen flex items-center bg-dot-grid overflow-hidden pt-10 pb-16">
             <div className="container-layout relative z-10 grid gap-8 md:grid-cols-12 items-center">
                 <div className="md:col-span-12 lg:col-span-10 xl:col-span-11 flex flex-col items-start gap-8 ml-0 md:ml-4 lg:ml-8">
 
@@ -34,7 +34,7 @@ export function Hero() {
                             transition={{ duration: 0.5, delay: 0.2 }}
                             className="block italic"
                         >
-                            <span className="text-primary underline decoration-1 underline-offset-[12px] sm:underline-offset-[16px]">Own</span> Your Code.
+                            <span className="text-primary underline decoration-1 underline-offset-[5px] sm:underline-offset-[7px]">Own</span> Your Code.
                         </motion.span>
                         <motion.span
                             initial={{ opacity: 0, y: 20 }}
@@ -68,7 +68,7 @@ export function Hero() {
                             </Button>
                             {/* </Link> */}
                             <Link href="https://github.com/KaarimHussain/Lyrix">
-                                <Button size="lg" variant="outline" className="font-sans px-8 h-12 text-base border-border hover:bg-accent/50 bg-background/50 backdrop-blur-sm">
+                                <Button size="lg" variant="outline" className="font-sans px-8 h-12 text-base border-border hover:bg-accent/50 bg-background/50 backdrop-blur-sm w-full">
                                     Star on GitHub ↗
                                 </Button>
                             </Link>
